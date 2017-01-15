@@ -31,7 +31,6 @@
 ## CMD
 
 ```bash
-indexer --all
 searchd --nodetach
 ```
 

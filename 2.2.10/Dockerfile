@@ -77,4 +77,4 @@ ADD searchd.sh /bin/
 ADD indexall.sh /bin/
 RUN chmod a+x /bin/searchd.sh && chmod a+x /bin/indexall.sh
 
-CMD ["indexall.sh"]
+CMD ["searchd.sh"]
