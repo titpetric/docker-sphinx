@@ -1,55 +1,38 @@
-Dockerfiles
-===========
+# sphinx search
 
-A collection of docker files.
+修改自https://github.com/leodido/dockerfiles
 
-See internal READMEs for further information.
+## 暴露端口
 
-### SphinxSearch
+9312 for client connections
 
-[![Docker](http://dockeri.co/image/leodido/sphinxsearch)](https://registry.hub.docker.com/u/leodido/sphinxsearch/)
+9306 for SQL connections
 
-SphinxSearch is an open source search engine designed to provide full-text search functionality to client applications.
+## 挂载点
 
-- Stables: from 2.1.6 to latest (2.2.10)
-- Betas: from 2.2.1-beta to 2.3.1-beta
+/var/idx/sphinx
 
-Also available on [docker index](https://registry.hub.docker.com/u/leodido/sphinxsearch).
+/var/log/sphinx
 
-Pull all with:
+/var/lib/sphinx
 
-```
-$ docker pull leodido/sphinxsearch
-```
+/var/run/sphinx
 
-Or pull a specific version:
+/var/diz/sphinx
 
-```
-$ docker pull leodido/sphinxsearch:latest
-```
+这些都在Dockerfile里定义成了data volumes
 
-### TeX Live
+## 配置文件
 
-[![Docker](http://dockeri.co/image/leodido/texlive)](https://registry.hub.docker.com/u/leodido/texlive/)
+/usr/local/etc/sphinx.conf
 
-The default free software distribution for the TeX typesetting system. It provides a comprehensive TeX system with binaries, macro packages, and fonts.
+可以映射覆盖这个文件
 
-- 2014 (full scheme installation)
+## CMD
 
-Also available on [docker index](https://registry.hub.docker.com/u/leodido/texlive).
-
-Pull a version with:
-
-```
-$ docker pull leodido/texlive:2014
+```bash
+indexer --all
+searchd --nodetach
 ```
 
-## Copyright and license
-
-The code and docker images are licensed under the terms of [MIT license](#LICENSE).
-
-Copyright (c) 2015 [Leo Di Donato](http://www.github.com/leodido).
-
----
-
-[![Analytics](https://ga-beacon.appspot.com/UA-49657176-1/dockerfiles)](https://github.com/igrigorik/ga-beacon)
+## docker-compose
